@@ -64,7 +64,9 @@ void graph_ss(double *atmS1, int nd1, int nsolvent1, int nAtomS1, int s1s1hbdn, 
                 if(dist < s1as1bBDmax[crt] && dist > s1as1bBDmin[crt] && ang > s1s1v6[crt] && ang < s1s1v7[crt]) // 2015.12.15, changed, Tiecheng
                 {
                    fprintf(outputfGraphS1S1,"%d\n%d\n",nodei,nodej);
-                   fprintf(outputfGeodS1S1,"%d %d 0 0 0 %d %d %.3f %.2f\n",nodei,nodej,s1a[crt],s1b[crt],dist,ang);
+               //    fprintf(outputfGeodS1S1,"%d %d 0 0 0 %d %d %.3f %.2f\n",nodei,nodej,s1a[crt],s1b[crt],dist,ang);
+                     fprintf(outputfGeodS1S1,"%d %d 0 0 0 %d %d %.3f %.2f\n",nodei,nodej,s1s1v3[crt],s1s1v5[crt],dist,ang);   // 2017.09.03, change this for {O..O, HO..O} definition, Tiecheng
+        
                 }
 
             }
@@ -307,7 +309,9 @@ void graph_sAsB(double *atmS1, double *atmS2, int nd1, int nd2, int nsolvent1, i
                 if(dist < s12as12bBDmax[crt] && dist > s12as12bBDmin[crt] && ang > s1s2v6[crt] && ang < s1s2v7[crt]) // 2015.12.15, changed, Tiecheng
                 {
                    fprintf(outputfGraphS1S2,"%d\n%d\n",nodei,nodej);
-                   fprintf(outputfGeodS1S2,"%d %d 0 0 0 %d %d %.3f %.2f\n",nodei,nodej,s12a[crt],s12b[crt],dist,ang);
+                //   fprintf(outputfGeodS1S2,"%d %d 0 0 0 %d %d %.3f %.2f\n",nodei,nodej,s12a[crt],s12b[crt],dist,ang);
+                   fprintf(outputfGeodS1S2,"%d %d 0 0 0 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);   // 2017.09.03, change this for {O..O, HO..O} definition, Tiecheng
+        
                 }
 
             }
@@ -1076,7 +1080,7 @@ void search_pbc_gss(int boxid, double *atmS1, double *atmS1x, int nd1, int nsolv
                 if(dist < s1as1bBDmax[crt] && dist > s1as1bBDmin[crt] && ang > s1s1v6[crt] && ang < s1s1v7[crt]) // 2015.12.15, changed, Tiecheng
                 {
                    fprintf(outputfGraphS1S1,"%d\n%d\n",nodei,nodej);
-                   
+                /*   
                    if(boxid == 1) fprintf(outputfGeodS1S1,"%d %d 1 0 0 %d %d %.3f %.2f\n",nodei,nodej,s1a[crt],s1b[crt],dist,ang);
                    if(boxid == 2) fprintf(outputfGeodS1S1,"%d %d 0 1 0 %d %d %.3f %.2f\n",nodei,nodej,s1a[crt],s1b[crt],dist,ang);
                    if(boxid == 3) fprintf(outputfGeodS1S1,"%d %d 0 0 1 %d %d %.3f %.2f\n",nodei,nodej,s1a[crt],s1b[crt],dist,ang);
@@ -1090,6 +1094,20 @@ void search_pbc_gss(int boxid, double *atmS1, double *atmS1x, int nd1, int nsolv
                    if(boxid == 11) fprintf(outputfGeodS1S1,"%d %d 1 1 -1 %d %d %.3f %.2f\n",nodei,nodej,s1a[crt],s1b[crt],dist,ang);
                    if(boxid == 12) fprintf(outputfGeodS1S1,"%d %d -1 1 1 %d %d %.3f %.2f\n",nodei,nodej,s1a[crt],s1b[crt],dist,ang);
                    if(boxid == 13) fprintf(outputfGeodS1S1,"%d %d 1 -1 1 %d %d %.3f %.2f\n",nodei,nodej,s1a[crt],s1b[crt],dist,ang);
+                */
+                   if(boxid == 1) fprintf(outputfGeodS1S1,"%d %d 1 0 0 %d %d %.3f %.2f\n",nodei,nodej,s1s1v3[crt],s1s1v5[crt],dist,ang);    // changed for {O..O, HO..O} definition, Tiecheng
+                   if(boxid == 2) fprintf(outputfGeodS1S1,"%d %d 0 1 0 %d %d %.3f %.2f\n",nodei,nodej,s1s1v3[crt],s1s1v5[crt],dist,ang);
+                   if(boxid == 3) fprintf(outputfGeodS1S1,"%d %d 0 0 1 %d %d %.3f %.2f\n",nodei,nodej,s1s1v3[crt],s1s1v5[crt],dist,ang);
+                   if(boxid == 4) fprintf(outputfGeodS1S1,"%d %d 1 1 0 %d %d %.3f %.2f\n",nodei,nodej,s1s1v3[crt],s1s1v5[crt],dist,ang);
+                   if(boxid == 5) fprintf(outputfGeodS1S1,"%d %d 0 1 1 %d %d %.3f %.2f\n",nodei,nodej,s1s1v3[crt],s1s1v5[crt],dist,ang);
+                   if(boxid == 6) fprintf(outputfGeodS1S1,"%d %d 1 0 1 %d %d %.3f %.2f\n",nodei,nodej,s1s1v3[crt],s1s1v5[crt],dist,ang);
+                   if(boxid == 7) fprintf(outputfGeodS1S1,"%d %d 1 -1 0 %d %d %.3f %.2f\n",nodei,nodej,s1s1v3[crt],s1s1v5[crt],dist,ang);
+                   if(boxid == 8) fprintf(outputfGeodS1S1,"%d %d 0 -1 1 %d %d %.3f %.2f\n",nodei,nodej,s1s1v3[crt],s1s1v5[crt],dist,ang);
+                   if(boxid == 9) fprintf(outputfGeodS1S1,"%d %d -1 0 1 %d %d %.3f %.2f\n",nodei,nodej,s1s1v3[crt],s1s1v5[crt],dist,ang);
+                   if(boxid == 10) fprintf(outputfGeodS1S1,"%d %d 1 1 1 %d %d %.3f %.2f\n",nodei,nodej,s1s1v3[crt],s1s1v5[crt],dist,ang);
+                   if(boxid == 11) fprintf(outputfGeodS1S1,"%d %d 1 1 -1 %d %d %.3f %.2f\n",nodei,nodej,s1s1v3[crt],s1s1v5[crt],dist,ang);
+                   if(boxid == 12) fprintf(outputfGeodS1S1,"%d %d -1 1 1 %d %d %.3f %.2f\n",nodei,nodej,s1s1v3[crt],s1s1v5[crt],dist,ang);
+                   if(boxid == 13) fprintf(outputfGeodS1S1,"%d %d 1 -1 1 %d %d %.3f %.2f\n",nodei,nodej,s1s1v3[crt],s1s1v5[crt],dist,ang);
 
                 }
 
@@ -1152,7 +1170,7 @@ void search_pbc_gsAsB(int boxid, double *atmS1, double *atmS2x, int nd1, int nd2
                 if(dist < s12as12bBDmax[crt] && dist > s12as12bBDmin[crt] && ang > s1s2v6[crt] && ang < s1s2v7[crt])  // 2015.12.15, changed, Tiecheng
                 {
                    fprintf(outputfGraphS1S2,"%d\n%d\n",nodei,nodej);
-
+                 /*
                    if(boxid == 1) fprintf(outputfGeodS1S2,"%d %d 1 0 0 %d %d %.3f %.2f\n",nodei,nodej,s12a[crt],s12b[crt],dist,ang);
                    if(boxid == -1) fprintf(outputfGeodS1S2,"%d %d -1 0 0 %d %d %.3f %.2f\n",nodei,nodej,s12a[crt],s12b[crt],dist,ang);
                    if(boxid == 2) fprintf(outputfGeodS1S2,"%d %d 0 1 0 %d %d %.3f %.2f\n",nodei,nodej,s12a[crt],s12b[crt],dist,ang);
@@ -1179,6 +1197,33 @@ void search_pbc_gsAsB(int boxid, double *atmS1, double *atmS2x, int nd1, int nd2
                    if(boxid == -12) fprintf(outputfGeodS1S2,"%d %d 1 -1 -1 %d %d %.3f %.2f\n",nodei,nodej,s12a[crt],s12b[crt],dist,ang);
                    if(boxid == 13) fprintf(outputfGeodS1S2,"%d %d 1 -1 1 %d %d %.3f %.2f\n",nodei,nodej,s12a[crt],s12b[crt],dist,ang);
                    if(boxid == -13) fprintf(outputfGeodS1S2,"%d %d -1 1 -1 %d %d %.3f %.2f\n",nodei,nodej,s12a[crt],s12b[crt],dist,ang);
+                 */  
+                   if(boxid == 1) fprintf(outputfGeodS1S2,"%d %d 1 0 0 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);  // changed for {O..O, HO..O} definition, Tiecheng
+                   if(boxid == -1) fprintf(outputfGeodS1S2,"%d %d -1 0 0 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);
+                   if(boxid == 2) fprintf(outputfGeodS1S2,"%d %d 0 1 0 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);
+                   if(boxid == -2) fprintf(outputfGeodS1S2,"%d %d 0 -1 0 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);
+                   if(boxid == 3) fprintf(outputfGeodS1S2,"%d %d 0 0 1 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);
+                   if(boxid == -3) fprintf(outputfGeodS1S2,"%d %d 0 0 -1 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);
+                   if(boxid == 4) fprintf(outputfGeodS1S2,"%d %d 1 1 0 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);
+                   if(boxid == -4) fprintf(outputfGeodS1S2,"%d %d -1 -1 0 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);
+                   if(boxid == 5) fprintf(outputfGeodS1S2,"%d %d 0 1 1 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);
+                   if(boxid == -5) fprintf(outputfGeodS1S2,"%d %d 0 -1 -1 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);
+                   if(boxid == 6) fprintf(outputfGeodS1S2,"%d %d 1 0 1 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);
+                   if(boxid == -6) fprintf(outputfGeodS1S2,"%d %d -1 0 -1 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);
+                   if(boxid == 7) fprintf(outputfGeodS1S2,"%d %d 1 -1 0 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);
+                   if(boxid == -7) fprintf(outputfGeodS1S2,"%d %d -1 1 0 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);
+                   if(boxid == 8) fprintf(outputfGeodS1S2,"%d %d 0 -1 1 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);
+                   if(boxid == -8) fprintf(outputfGeodS1S2,"%d %d 0 1 -1 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);
+                   if(boxid == 9) fprintf(outputfGeodS1S2,"%d %d -1 0 1 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);
+                   if(boxid == -9) fprintf(outputfGeodS1S2,"%d %d 1 0 -1 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);
+                   if(boxid == 10) fprintf(outputfGeodS1S2,"%d %d 1 1 1 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);
+                   if(boxid == -10) fprintf(outputfGeodS1S2,"%d %d -1 -1 -1 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);
+                   if(boxid == 11) fprintf(outputfGeodS1S2,"%d %d 1 1 -1 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);
+                   if(boxid == -11) fprintf(outputfGeodS1S2,"%d %d -1 -1 1 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);
+                   if(boxid == 12) fprintf(outputfGeodS1S2,"%d %d -1 1 1 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);
+                   if(boxid == -12) fprintf(outputfGeodS1S2,"%d %d 1 -1 -1 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);
+                   if(boxid == 13) fprintf(outputfGeodS1S2,"%d %d 1 -1 1 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);
+                   if(boxid == -13) fprintf(outputfGeodS1S2,"%d %d -1 1 -1 %d %d %.3f %.2f\n",nodei,nodej,s1s2v3[crt],s1s2v5[crt],dist,ang);
                    
                 }
 
