@@ -287,12 +287,12 @@ if(EucDistS == 1)
         // free memory
         for (i=0; i < numnodes; i++)
         {
-            free(coord[i]);    
+//            free(coord[i]);      // comment it out since coord[] is allocated only when EucDistS = 1
             free(gdmatrix[i]);
             free(adjmatrix[i]);
             free(next[i]);
         }
-        free(coord);           
+//        free(coord);           
         free(edgelist);
         free(gdmatrix);
         free(adjmatrix);
@@ -604,12 +604,12 @@ if(EucDistSASB == 1)
         // free memory
         for (i=0; i < numnodes; i++)
         {
-            free(coord[i]);    
+//            free(coord[i]);    // comment it out since coord[] is allocated only when EucDistSASB = 1
             free(gdmatrix[i]);
             free(adjmatrix[i]);
             free(next[i]);
         }
-        free(coord);           
+//        free(coord);           
         free(edgelist);
         free(gdmatrix);
         free(adjmatrix);
@@ -950,12 +950,12 @@ if(EucDistSASBSC == 1)
         // free memory
         for (i=0; i < numnodes; i++)
         {
-            free(coord[i]);    
+//            free(coord[i]);    // comment it out since coord[] is allocated only when EucDistSASBSC = 1
             free(gdmatrix[i]);
             free(adjmatrix[i]);
             free(next[i]);
         }
-        free(coord);           
+//        free(coord);           
         free(edgelist);
         free(gdmatrix);
         free(adjmatrix);
